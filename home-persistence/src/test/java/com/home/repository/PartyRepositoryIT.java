@@ -16,48 +16,48 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.home.entity.AddressEntity;
-import com.home.entity.CustomerEntity;
+import com.home.entity.PartyEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration( value = { "classpath:persistence-context.xml" })
+@ContextConfiguration(value = { "classpath:persistence-context.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup({"/dbunit/customer.xml", "/dbunit/address.xml"})
+@DatabaseSetup({ "/dbunit/party.xml", "/dbunit/address.xml" })
 @ActiveProfiles("H2")
-public class CustomerRepositoryIT {
+public class PartyRepositoryIT {
 
 	private static final String LAST_NAME = "Simpson";
 	private static final String CITY = "Springfield";
 	@Inject
-	private CustomerRepository repository;
+	private PartyRepository repository;
 
-	@Test 
-	public void testFindAll(){
+	@Test
+	public void testFindAll() {
 		Assert.assertTrue(repository.findAll().iterator().hasNext());
 	}
-	
-	@Test 
-	public void testFindByLastName(){
+
+	@Test
+	public void testFindByLastName() {
 		Assert.assertTrue(!repository.findByLastName(LAST_NAME).isEmpty());
 	}
-	
-	@Test 
-	public void testFindByAddressesCity(){
+
+	@Test
+	public void testFindByAddressesCity() {
 		Assert.assertTrue(!repository.findByAddressesCity(CITY).isEmpty());
 	}
-	
-	@Test 
+
+	@Test
 	@Transactional
-	public void testAddressExists(){
-		for (CustomerEntity customer : repository.findAll()){
+	public void testAddressExists() {
+		for (PartyEntity customer : repository.findAll()) {
 			Assert.assertTrue(!customer.getAddresses().isEmpty());
 		}
 	}
-	
+
 	@Test
 	@Transactional
-	public void testAddAddress(){
-		CustomerEntity customer = repository.findAll().iterator().next();
+	public void testAddAddress() {
+		PartyEntity customer = repository.findAll().iterator().next();
 		Integer beforeSize = customer.getAddresses().size();
 		AddressEntity address = new AddressEntity();
 		address.setStreet("1515 Evergreen Terr");

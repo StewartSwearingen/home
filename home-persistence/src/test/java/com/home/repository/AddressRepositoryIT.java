@@ -15,26 +15,24 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration( value = { "classpath:persistence-context.xml" })
+@ContextConfiguration(value = { "classpath:persistence-context.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup({"/dbunit/customer.xml", "/dbunit/address.xml"})
+@DatabaseSetup({ "/dbunit/party.xml", "/dbunit/address.xml" })
 @ActiveProfiles("H2")
 public class AddressRepositoryIT {
-	
+
 	@Inject
 	private AddressRepository addressRepository;
-	
+
 	@Test
-	public void findAll(){
+	public void findAll() {
 		Assert.assertTrue(addressRepository.findAll().iterator().hasNext());
 	}
-	
+
 	@Test
-	public void findCustomerExists(){
+	public void findCustomerExists() {
 		Assert.assertNotNull(addressRepository.findAll().iterator().next().getOwner());
 	}
 }

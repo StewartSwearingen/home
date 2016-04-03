@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CUSTOMER")
-public class CustomerEntity {
+public class PartyEntity {
 
     @Id
     @Column(name="CUSTOMER_ID")
@@ -29,7 +29,7 @@ public class CustomerEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="owner")
     private List<AddressEntity> addresses;
     
-    public CustomerEntity() {	
+    public PartyEntity() {	
     }
     
     public long getId() {

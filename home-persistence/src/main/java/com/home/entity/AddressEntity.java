@@ -27,7 +27,7 @@ public class AddressEntity {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="CUSTOMER_ID")
-    private CustomerEntity owner;
+    private PartyEntity owner;
     
     public AddressEntity() {
     	
@@ -49,11 +49,11 @@ public class AddressEntity {
 		this.city = city;
 	}
 
-	public CustomerEntity getOwner() {
+	public PartyEntity getOwner() {
 		return owner;
 	}
 
-	public void setOwner(CustomerEntity owner) {
+	public void setOwner(PartyEntity owner) {
 		this.owner = owner;
 	}
 

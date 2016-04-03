@@ -1,14 +1,14 @@
 package com.home.business.dto;
 
-public class Customer {
+public class Party {
 
 	private String name;
 
-	public Customer() {
+	public Party() {
 
 	}
 
-	public Customer(String firstName, String lastName) {
+	public Party(String firstName, String lastName) {
 		this.name = new StringBuilder(firstName).append(" ").append(lastName).toString();
 	}
 
