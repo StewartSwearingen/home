@@ -36,6 +36,6 @@ public class PartyServiceTest {
 	public void testFindAll() {
 		parties.add(partyEntity);
 		Mockito.when(partyRepository.findAll()).thenReturn(parties);
-		Assert.assertTrue(!partyService.getCustomers().isEmpty());
+		Assert.assertTrue(!partyService.getParties().isEmpty());
 	}
 }

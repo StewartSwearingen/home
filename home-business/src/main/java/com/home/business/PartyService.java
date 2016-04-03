@@ -6,5 +6,5 @@ import com.home.business.dto.Party;
 
 public interface PartyService {
 
-	public Collection<Party> getCustomers();
+	public Collection<Party> getParties();
 }
