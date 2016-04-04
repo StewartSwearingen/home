@@ -36,7 +36,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -48,7 +47,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.2.5.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -70,9 +68,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.191</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
