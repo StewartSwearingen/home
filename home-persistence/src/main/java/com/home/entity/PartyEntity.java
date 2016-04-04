@@ -12,27 +12,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CUSTOMER")
+@Table(name = "PARTY")
 public class PartyEntity {
 
-    @Id
-    @Column(name="CUSTOMER_ID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
-   
-    @Column(name="FIRST_NAME")
-    private String firstName;
-    
-    @Column(name="LAST_NAME")
-    private String lastName;
+	@Id
+	@Column(name = "PARTY_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="owner")
-    private List<AddressEntity> addresses;
-    
-    public PartyEntity() {	
-    }
-    
-    public long getId() {
+	@Column(name = "FIRST_NAME")
+	private String firstName;
+
+	@Column(name = "LAST_NAME")
+	private String lastName;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	private List<RoleEntity> roles;
+
+	public PartyEntity() {
+	}
+
+	public long getId() {
 		return id;
 	}
 
@@ -52,13 +52,12 @@ public class PartyEntity {
 		this.lastName = lastName;
 	}
 
-	public List<AddressEntity> getAddresses() {
-		return addresses;
+	public List<RoleEntity> getRoles() {
+		return roles;
 	}
 
-	public void setAddresses(List<AddressEntity> addresses) {
-		this.addresses = addresses;
+	public void setRoles(List<RoleEntity> roles) {
+		this.roles = roles;
 	}
 
-    
 }

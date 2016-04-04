@@ -19,20 +19,20 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 @ContextConfiguration(value = { "classpath:persistence-context.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup({ "/dbunit/party.xml", "/dbunit/address.xml" })
+@DatabaseSetup({ "/dbunit/party.xml", "/dbunit/role.xml" })
 @ActiveProfiles("H2")
-public class AddressRepositoryIT {
+public class RoleRepositoryIT {
 
 	@Inject
-	private AddressRepository addressRepository;
+	private RoleRepository roleRepository;
 
 	@Test
 	public void findAll() {
-		Assert.assertTrue(addressRepository.findAll().iterator().hasNext());
+		Assert.assertTrue(roleRepository.findAll().iterator().hasNext());
 	}
 
 	@Test
-	public void findCustomerExists() {
-		Assert.assertNotNull(addressRepository.findAll().iterator().next().getOwner());
+	public void findCwnerExists() {
+		Assert.assertNotNull(roleRepository.findAll().iterator().next().getOwner());
 	}
 }

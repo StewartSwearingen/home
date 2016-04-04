@@ -15,19 +15,19 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.home.entity.AddressEntity;
 import com.home.entity.PartyEntity;
+import com.home.entity.RoleEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(value = { "classpath:persistence-context.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup({ "/dbunit/party.xml", "/dbunit/address.xml" })
+@DatabaseSetup({ "/dbunit/party.xml", "/dbunit/role.xml" })
 @ActiveProfiles("H2")
 public class PartyRepositoryIT {
 
 	private static final String LAST_NAME = "Simpson";
-	private static final String CITY = "Springfield";
+	private static final String ROLE = "Donut Eater";
 	@Inject
 	private PartyRepository repository;
 
@@ -43,28 +43,27 @@ public class PartyRepositoryIT {
 
 	@Test
 	public void testFindByAddressesCity() {
-		Assert.assertTrue(!repository.findByAddressesCity(CITY).isEmpty());
+		Assert.assertTrue(!repository.findByRolesName(ROLE).isEmpty());
 	}
 
 	@Test
 	@Transactional
 	public void testAddressExists() {
 		for (PartyEntity customer : repository.findAll()) {
-			Assert.assertTrue(!customer.getAddresses().isEmpty());
+			Assert.assertTrue(!customer.getRoles().isEmpty());
 		}
 	}
 
 	@Test
 	@Transactional
-	public void testAddAddress() {
+	public void testAddRole() {
 		PartyEntity customer = repository.findAll().iterator().next();
-		Integer beforeSize = customer.getAddresses().size();
-		AddressEntity address = new AddressEntity();
-		address.setStreet("1515 Evergreen Terr");
-		address.setCity("Springfield");
-		customer.getAddresses().add(address);
+		Integer beforeSize = customer.getRoles().size();
+		RoleEntity address = new RoleEntity();
+		address.setName("Safety Inspector");
+		customer.getRoles().add(address);
 		repository.save(customer);
 		customer = repository.findOne(customer.getId());
-		Assert.assertEquals(beforeSize + 1, customer.getAddresses().size());
+		Assert.assertEquals(beforeSize + 1, customer.getRoles().size());
 	}
 }
