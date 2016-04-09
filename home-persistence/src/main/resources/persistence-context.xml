@@ -25,7 +25,6 @@
 	        </property>
 	        <property name="jpaProperties">
 	            <props>
-	                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 	                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
 	                <prop key="hibernate.show_sql">true</prop>
 	                <prop key="hibernate.format_sql">true</prop>
@@ -40,7 +39,10 @@
 	 
 	    <tx:annotation-driven/>
 	 
-	    <jdbc:embedded-database id="dataSource" type="H2"/>
+	    <jdbc:embedded-database id="dataSource" type="H2">
+	    	<jdbc:script location="classpath:schema.ddl"/>
+	    	<jdbc:script location="classpath:data.sql"/>
+	    </jdbc:embedded-database>
 	</beans>
 
 </beans>
